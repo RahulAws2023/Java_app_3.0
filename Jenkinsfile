@@ -112,7 +112,7 @@ pipeline{
             steps {
                 // Publish artifacts to Artifactory
                 rtUpload (
-                    serverId: 'example-repo-local',
+                    serverId: 'JBengo',
                     spec: '''{
                         "files": [
                             {
