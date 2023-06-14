@@ -107,6 +107,22 @@ pipeline{
                    dockerImageCleanup("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
-        }      
+        }
+        stage('Publish to Artifactory') {
+            steps {
+                // Publish artifacts to Artifactory
+                rtUpload (
+                    serverId: 'example-repo-local',
+                    spec: '''{
+                        "files": [
+                            {
+                                "pattern": "*.jar",
+                                "target": "example-repo-local/"
+                            }
+                        ]
+                    }'''
+                )
+            }
+        }
     }
 }
